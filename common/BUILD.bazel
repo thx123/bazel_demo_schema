@@ -1,0 +1,19 @@
+load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_library")
+load("@rules_python//python:defs.bzl", "py_library")
+
+python_grpc_library(
+    name = "routeguide_py_grpc",
+    protos = ["//protos:routeguide_proto"],
+)
+
+py_library(
+    name = "resources_py",
+    srcs = [
+        "resources.py",
+    ],
+    data = ["//data:routeguide_features"],
+    deps = [
+        ":routeguide_py_grpc",
+    ],
+)
+
