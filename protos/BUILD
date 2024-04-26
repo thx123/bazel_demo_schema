@@ -17,6 +17,7 @@ proto_library(
 
 python_grpc_library(
     name = "routeguide_py_grpc",
+    output_mode = "NO_PREFIX",
     protos = [":routeguide_proto"],
 )
 
