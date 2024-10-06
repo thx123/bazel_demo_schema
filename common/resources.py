@@ -16,7 +16,7 @@
 import json
 import os
 
-from examples_bazel.protos import routeguide_pb2
+from protos import routeguide_pb2
 
 def read_route_guide_database():
     """Reads the route guide database.
@@ -26,7 +26,7 @@ def read_route_guide_database():
         route_guide_pb2.Features.
     """
     feature_list = []
-    db_path = 'examples_bazel/protos/routeguide_features.json'
+    db_path = 'data/routeguide_features.json'
     if 'DATABASE_FILE' in os.environ:
         db_path = os.environ['DATABASE_FILE']
     with open(db_path) as route_guide_db_file:

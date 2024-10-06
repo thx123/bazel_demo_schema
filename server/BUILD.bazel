@@ -1,0 +1,14 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
+py_binary(
+    name = "server",
+    srcs = [
+        "server.py",
+    ],
+    data = ["//data:routeguide_features"],
+    python_version = "PY3",
+    deps = [
+        "//common:resources",
+        "//protos:routeguide_py_grpc",
+    ],
+)
