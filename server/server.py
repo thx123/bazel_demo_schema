@@ -20,7 +20,8 @@ import os
 import grpc
 import logging
 
-# Error: External module import path is not yet working...
+from python.runfiles import Runfiles
+
 from protos import routeguide_pb2
 from protos import routeguide_pb2_grpc
 from common import resources
@@ -138,4 +139,11 @@ def serve():
 
 if __name__ == '__main__':
     logging.basicConfig()
+
+    # Runfiles for data dependency, per:
+    # https://github.com/bazelbuild/rules_python/tree/main/python/runfiles
+    r = Runfiles.Create()
+    env = {}
+    env.update(r.EnvVars())
+
     serve()

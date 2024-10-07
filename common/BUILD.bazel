@@ -11,6 +11,7 @@ py_library(
     ],
     data = ["//data:routeguide_features"],
     deps = [
+        "@rules_python//python/runfiles",
         "//protos:routeguide_py_grpc",
     ],
 )

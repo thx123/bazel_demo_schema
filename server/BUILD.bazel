@@ -8,6 +8,7 @@ py_binary(
     data = ["//data:routeguide_features"],
     python_version = "PY3",
     deps = [
+        "@rules_python//python/runfiles",
         "//common:resources",
         "//protos:routeguide_py_grpc",
     ],

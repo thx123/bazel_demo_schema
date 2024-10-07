@@ -17,6 +17,7 @@ import json
 import os
 
 from protos import routeguide_pb2
+from python.runfiles import Runfiles
 
 def read_route_guide_database():
     """Reads the route guide database.
@@ -29,7 +30,9 @@ def read_route_guide_database():
     db_path = 'data/routeguide_features.json'
     if 'DATABASE_FILE' in os.environ:
         db_path = os.environ['DATABASE_FILE']
-    with open(db_path) as route_guide_db_file:
+    # with open(db_path) as route_guide_db_file:
+    r = Runfiles.Create()
+    with open(r.Rlocation(db_path), "r") as route_guide_db_file:
         for item in json.load(route_guide_db_file):
             feature = routeguide_pb2.Feature(
                 name=item["name"],
