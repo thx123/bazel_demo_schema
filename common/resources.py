@@ -30,7 +30,16 @@ def read_route_guide_database():
     db_path = 'data/routeguide_features.json'
     if 'DATABASE_FILE' in os.environ:
         db_path = os.environ['DATABASE_FILE']
+    # Note: This commented-out code line works in bazel_demo_schema, but not bazel_demo_server.
     # with open(db_path) as route_guide_db_file:
+    # Note: This Runfiles based approach to read data file does not work even in bazel_demo_schema,
+    # and would giv the following error:
+    #
+    # bazel run server:server
+    #     with open(r.Rlocation(db_path), "r") as route_guide_db_file:
+    #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    # TypeError: expected str, bytes or os.PathLike object, not NoneType
+    #
     r = Runfiles.Create()
     with open(r.Rlocation(db_path), "r") as route_guide_db_file:
         for item in json.load(route_guide_db_file):
